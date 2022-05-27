@@ -4,6 +4,12 @@
     padding: 0;
 }
 
+:root {
+    --vlom-spinning-logo-width: 200px;
+    --vlom-spinning-logo-thickness: 50px;
+    --vlom-spinning-logo-red: rgb(204, 51, 56);
+}
+
 body {
     width: 100%;
     height: 100vh;
@@ -18,12 +24,68 @@ body {
 
 .vlom-spinning-logo-wrapper .vlom-spinning-logo {
     position: relative;
+    transform-style: preserve-3d;
+    animation: vlom-spinning-logo-spin 5s linear infinite;
 }
 
 .vlom-spinning-logo-wrapper .vlom-spinning-logo > div {
+    transform-style: preserve-3d;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--vlom-spinning-logo-red);
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-front img,
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-back img {
+    width: var(--vlom-spinning-logo-width);
+    display: block;
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-left,
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-right {
+    width: var(--vlom-spinning-logo-thickness);
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-top,
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-bottom {
+    height: var(--vlom-spinning-logo-thickness);
 }
 
 .vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-front {
-    
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / 2));
+    position: relative;
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-back {
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / -2));
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-top {
+    transform-origin: 50% 0%;
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / 2)) rotateX(-90deg);
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-bottom {
+    top: 100%;
+    transform-origin: 50% 0%;
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / 2)) rotateX(-90deg);
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-left {
+    transform-origin: 0% 50%;
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / 2)) rotateY(90deg);
+}
+
+.vlom-spinning-logo-wrapper .vlom-spinning-logo .vlom-spinning-logo-right {
+    left: 100%;
+    transform-origin: 0% 50%;
+    transform: translateZ(calc(var(--vlom-spinning-logo-thickness) / 2)) rotateY(90deg);
+}
+
+@keyframes vlom-spinning-logo-spin {
+    from {transform: rotateY(0);}
+    to {transform: rotateY(360deg);}
 }
