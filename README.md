@@ -1,2 +1,2 @@
 # vlom-spinning-logo
-CSS Logo Animation for VLOM d.o.o.
+CSS Logo Animation for VLOM
